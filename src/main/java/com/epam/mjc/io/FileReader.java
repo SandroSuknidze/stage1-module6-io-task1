@@ -13,7 +13,6 @@ public class FileReader {
             while ((character = fileInputStream.read()) != -1) {
                 content += (char) character;
             }
-            System.out.print(content);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -39,6 +38,8 @@ public class FileReader {
                         break;
                     case "Phone":
                         profile.setPhone(Long.parseLong(value));
+                        break;
+                    default:
                         break;
                 }
             }
