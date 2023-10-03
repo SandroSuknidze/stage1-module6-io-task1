@@ -7,15 +7,18 @@ public class FileReader {
 
     public Profile getDataFromFile(File file) {
 
-        String content = "";
+        StringBuilder contentBuilder = new StringBuilder();
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
             int character;
             while ((character = fileInputStream.read()) != -1) {
-                content += (char) character;
+                contentBuilder.append((char) character);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new FileReadingException("Error reading the profile file", e);
         }
+
+        String content = contentBuilder.toString();
+
 
         String[] lines = content.split("\n");
         Profile profile = new Profile();
@@ -46,6 +49,6 @@ public class FileReader {
         }
 
 
-        return new Profile();
+        return profile;
     }
 }
